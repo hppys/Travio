@@ -8,7 +8,9 @@ export default function Orders() {
       <div className="flex flex-col items-center justify-center min-h-[70vh] text-center p-6 text-slate-400">
         <div className="text-6xl mb-4 opacity-50">🎫</div>
         <h3 className="text-lg font-bold text-slate-600">Belum ada pesanan</h3>
-        <p className="text-sm">Pesan tiket pesawat atau hotel dulu, yuk!</p>
+        <p className="text-sm">
+          Pesan tiket pesawat, hotel, atau rental dulu, yuk!
+        </p>
       </div>
     );
   }
@@ -55,7 +57,11 @@ export default function Orders() {
             <div className="flex gap-4">
               <img
                 src={item.image}
+                alt={item.title}
                 className="w-20 h-20 rounded-2xl object-cover bg-slate-100"
+                onError={(e) =>
+                  (e.currentTarget.src = "https://placehold.co/200")
+                }
               />
               <div className="flex-1">
                 <h3 className="font-bold text-slate-800 text-lg leading-tight">
@@ -63,8 +69,9 @@ export default function Orders() {
                 </h3>
                 <p className="text-xs text-slate-500 mt-1">{item.subtitle}</p>
                 <div className="flex items-center gap-2 mt-2">
+                  {/* 👇 PERBAIKAN DI SINI: Ubah item.detailDate menjadi item.dateRange */}
                   <span className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-md font-medium">
-                    📅 {item.detailDate}
+                    📅 {item.dateRange}
                   </span>
                 </div>
               </div>
@@ -75,6 +82,7 @@ export default function Orders() {
                 <p className="text-[10px] text-slate-400 uppercase tracking-wide font-bold">
                   Total Bayar
                 </p>
+                {/* Pastikan menggunakan totalPrice */}
                 <p className="text-xl font-bold text-blue-600">
                   Rp {item.totalPrice.toLocaleString("id-ID")}
                 </p>
