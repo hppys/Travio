@@ -87,7 +87,7 @@ export default function FlightDetail() {
                 <span className="text-xs text-slate-400 mb-1">
                   {flight.duration}
                 </span>
-                <div className="w-full h-[2px] bg-slate-200 relative">
+                <div className="w-full h-0.5 bg-slate-200 relative">
                   <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-slate-400">
                     ✈
                   </span>

@@ -33,7 +33,7 @@ export default function Profile() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-32 relative z-10">
         {/* MEMBER CARD */}
-        <div className="bg-white/80 backdrop-blur-xl border border-white/40 rounded-[2rem] p-6 sm:p-8 shadow-2xl flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+        <div className="bg-white/80 backdrop-blur-xl border border-white/40 rounded-4xl p-6 sm:p-8 shadow-2xl flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
           <div className="relative group">
             <div className="w-28 h-28 p-1 bg-linear-to-tr from-yellow-400 to-orange-500 rounded-full shadow-lg">
               <img
@@ -106,7 +106,7 @@ export default function Profile() {
         {/* MENU SECTIONS */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Section 1: Pengaturan Akun */}
-          <div className="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100">
+          <div className="bg-white p-6 rounded-4xl shadow-sm border border-slate-100">
             <h3 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
               ⚙️ Pengaturan Akun
             </h3>
@@ -133,7 +133,7 @@ export default function Profile() {
           </div>
 
           {/* Section 2: Keamanan */}
-          <div className="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100">
+          <div className="bg-white p-6 rounded-4xl shadow-sm border border-slate-100">
             <h3 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
               🛡️ Keamanan & Bantuan
             </h3>

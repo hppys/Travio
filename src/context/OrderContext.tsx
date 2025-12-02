@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
 export interface OrderItem {
+  [x: string]: ReactNode;
   id: string;
   type: "FLIGHT" | "HOTEL" | "RENTAL";
   title: string;
@@ -48,6 +49,13 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
       ...item,
       id: `TRV-${Date.now().toString().slice(-6)}`,
       status: "pending",
+      type: "FLIGHT",
+      title: "",
+      subtitle: "",
+      pricePerUnit: 0,
+      totalPrice: 0,
+      dateRange: "",
+      image: ""
     };
     setOrders((prev) => [newOrder, ...prev]);
   };

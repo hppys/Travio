@@ -83,7 +83,7 @@ export default function RentalDetail() {
           className="w-full h-full object-contain p-8"
           alt={rental.car_model}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-transparent to-transparent"></div>
 
         {/* Judul di atas gambar */}
         <div className="absolute bottom-0 left-0 p-6 text-white w-full">

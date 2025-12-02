@@ -54,7 +54,7 @@ export default function HotelDetail() {
       {/* Hero Image */}
       <div className="h-80 relative">
         <img src={hotel.image_url} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 to-transparent"></div>
         <div className="absolute bottom-0 left-0 p-6 text-white w-full">
           <div className="flex justify-between items-end">
             <div>

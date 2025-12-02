@@ -85,7 +85,7 @@ export default function Flights() {
   if (!hasSearched) {
     return (
       // Container full height (dvh) dan overflow hidden
-      <div className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden bg-slate-900">
+      <div className="relative w-full h-dvh flex items-center justify-center overflow-hidden bg-slate-900">
         {/* BACKGROUND FIXED & ESTETIK */}
         <div className="fixed inset-0 w-full h-full z-0">
           <img

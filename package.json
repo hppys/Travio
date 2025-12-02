@@ -1,18 +1,19 @@
 {
   "name": "travel-pwa",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:pwa": "tsc -b && vite build && echo 'PWA build complete'"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react-dom": "^19. 2.0",
     "react-router-dom": "^7.9.6"
   },
   "devDependencies": {
