@@ -9,36 +9,31 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   </React.StrictMode>
 );
 
-// Register service worker
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js").then(
-      (registration) => {
-        console.log("ServiceWorker registration successful:", registration);
-      },
-      (error) => {
-        console.log("ServiceWorker registration failed:", error);
-      }
-    );
-  });
-}
+// PWA Install Prompt Handler
+let deferredPrompt: Event | null = null;
 
-// Handle install prompt - GUNAKAN VARIABLE INI
-let deferredPrompt: any = null;
-
-window.addEventListener("beforeinstallprompt", (e: any) => {
+window.addEventListener("beforeinstallprompt", (e: Event) => {
   e.preventDefault();
   deferredPrompt = e;
+  console.log("Install prompt available");
 
-  // Tampilkan tombol install
+  // Tampilkan tombol install jika ada
   const installButton = document.getElementById("install-button");
   if (installButton) {
     installButton.style.display = "block";
+  }
+});
+
+// Handle install button click
+document.addEventListener("DOMContentLoaded", () => {
+  const installButton = document.getElementById("install-button");
+  if (installButton) {
     installButton.addEventListener("click", async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log(`User response to the install prompt: ${outcome}`);
+      if (deferredPrompt && deferredPrompt instanceof Event) {
+        const promptEvent = deferredPrompt as any;
+        promptEvent.prompt();
+        const { outcome } = await promptEvent.userChoice;
+        console.log(`User response to install prompt: ${outcome}`);
         deferredPrompt = null;
       }
     });
