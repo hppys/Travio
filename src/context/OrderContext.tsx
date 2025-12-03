@@ -1,22 +1,23 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 
 export interface OrderItem {
-  [x: string]: ReactNode;
   id: string;
   type: "FLIGHT" | "HOTEL" | "RENTAL";
   title: string;
   subtitle: string;
   pricePerUnit: number;
   totalPrice: number;
-  // 👇 Pastikan kedua properti ini ada:
   dateRange: string;
   durationInfo?: string;
   status: "pending" | "success" | "cancelled";
   image: string;
 }
-
-// ... (Sisa kode UserProfile dan Context tidak berubah) ...
-// Biar aman, ini full codenya untuk bagian Provider:
 
 interface UserProfile {
   name: string;
@@ -36,26 +37,55 @@ interface OrderContextType {
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
-  const [orders, setOrders] = useState<OrderItem[]>([]);
-  const [user, setUser] = useState<UserProfile>({
-    name: "Rizky Traveler",
-    email: "rizky@example.com",
-    avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Rizky",
-    memberLevel: "Gold",
+  // --- 1. LOAD DATA DARI LOCAL STORAGE SAAT AWAL BUKA ---
+
+  // Load Orders
+  const [orders, setOrders] = useState<OrderItem[]>(() => {
+    if (typeof window !== "undefined") {
+      const savedOrders = localStorage.getItem("travio_orders");
+      return savedOrders ? JSON.parse(savedOrders) : [];
+    }
+    return [];
   });
+
+  // Load User Profile
+  const [user, setUser] = useState<UserProfile>(() => {
+    if (typeof window !== "undefined") {
+      const savedUser = localStorage.getItem("travio_user");
+      return savedUser
+        ? JSON.parse(savedUser)
+        : {
+            name: "Rizky Traveler",
+            email: "rizky@example.com",
+            avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Rizky",
+            memberLevel: "Gold",
+          };
+    }
+    return {
+      name: "Rizky Traveler",
+      email: "rizky@example.com",
+      avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Rizky",
+      memberLevel: "Gold",
+    };
+  });
+
+  // --- 2. SIMPAN KE LOCAL STORAGE SETIAP ADA PERUBAHAN ---
+
+  useEffect(() => {
+    localStorage.setItem("travio_orders", JSON.stringify(orders));
+  }, [orders]);
+
+  useEffect(() => {
+    localStorage.setItem("travio_user", JSON.stringify(user));
+  }, [user]);
+
+  // --- 3. FUNGSI-FUNGSI LOGIKA ---
 
   const addOrder = (item: Omit<OrderItem, "id" | "status">) => {
     const newOrder: OrderItem = {
       ...item,
       id: `TRV-${Date.now().toString().slice(-6)}`,
       status: "pending",
-      type: "FLIGHT",
-      title: "",
-      subtitle: "",
-      pricePerUnit: 0,
-      totalPrice: 0,
-      dateRange: "",
-      image: ""
     };
     setOrders((prev) => [newOrder, ...prev]);
   };

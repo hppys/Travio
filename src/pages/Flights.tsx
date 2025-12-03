@@ -81,116 +81,96 @@ export default function Flights() {
     setShowToast(true);
   };
 
-  // --- TAMPILAN SEARCH MODE (STATIS / ESTETIK MOBILE) ---
   if (!hasSearched) {
     return (
-      // Container full height (dvh) dan overflow hidden
-      <div className="relative w-full h-dvh flex items-center justify-center overflow-hidden bg-slate-900">
-        {/* BACKGROUND FIXED & ESTETIK */}
+      // Bg Stone-900 (Hitam kecoklatan hangat)
+      <div className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden bg-stone-900">
         <div className="fixed inset-0 w-full h-full z-0">
           <img
             src={FLIGHT_BG}
             alt="Travel Background"
-            // Menambahkan scale sedikit agar terlihat lebih premium
             className="w-full h-full object-cover object-center scale-[1.02]"
           />
-          {/* Overlay Gradient Vertikal untuk estetika mobile */}
           <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/30 to-black/70 backdrop-blur-[1px]"></div>
         </div>
 
-        {/* KONTEN UTAMA (Ditambah padding atas 'pt-20' di mobile agar tidak terlalu mepet) */}
         <div className="relative z-10 w-full max-w-7xl px-6 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 pt-20 pb-24 lg:py-0">
-          {/* Text Section */}
           <div className="text-white text-center lg:text-left max-w-xl animate-in slide-in-from-left-10 duration-700">
-            <div className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-sm font-bold mb-4 lg:mb-6 tracking-wider uppercase border border-white/30 shadow-lg">
-              ✈️ Discover The World
+            <div className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold mb-4 lg:mb-6 tracking-widest uppercase border border-white/30">
+              DISCOVER THE WORLD
             </div>
             <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 lg:mb-6 leading-tight drop-shadow-2xl">
               Perjalanan Impian <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-200 to-indigo-100">
+              {/* Gradasi Orange ke Red (Warm) */}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-200 to-red-200">
                 Menanti Anda.
               </span>
             </h1>
-            <p className="text-sm sm:text-lg text-white/90 leading-relaxed drop-shadow-md hidden sm:block">
-              Cari dan pesan tiket penerbangan ke berbagai destinasi favorit
-              dengan harga terbaik.
-            </p>
           </div>
 
-          {/* Floating Form */}
           <div className="w-full max-w-[480px] animate-in slide-in-from-bottom-10 duration-700 delay-200">
-            <div className="bg-white/85 backdrop-blur-xl p-6 sm:p-8 rounded-4xl shadow-2xl shadow-black/20 border border-white/50 relative overflow-hidden">
+            <div className="bg-white/90 backdrop-blur-xl p-6 sm:p-8 rounded-3xl shadow-2xl border border-white/50">
               <div className="relative z-10">
-                <h2 className="text-2xl font-extrabold text-slate-800 mb-6 flex items-center gap-2">
+                <h2 className="text-2xl font-extrabold text-stone-900 mb-6">
                   Mulai Pencarian
                 </h2>
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 ml-3 uppercase tracking-wider">
+                      <label className="text-xs font-bold text-stone-500 ml-1 uppercase tracking-wider">
                         Dari
                       </label>
-                      <div className="relative group">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-slate-400 group-focus-within:text-blue-600">
-                          🛫
-                        </span>
-                        <select
-                          value={origin}
-                          onChange={(e) => setOrigin(e.target.value)}
-                          className="w-full bg-slate-50/80 border border-slate-200/80 rounded-2xl pl-12 pr-4 py-3 font-bold text-slate-700 outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer truncate"
-                        >
-                          <option value="">Kota Asal</option>
-                          {cities.map((c) => (
-                            <option key={c} value={c}>
-                              {c}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <select
+                        value={origin}
+                        onChange={(e) => setOrigin(e.target.value)}
+                        className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 font-bold text-stone-800 outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer text-sm"
+                      >
+                        <option value="">Kota Asal</option>
+                        {cities.map((c) => (
+                          <option key={c} value={c}>
+                            {c}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 ml-3 uppercase tracking-wider">
+                      <label className="text-xs font-bold text-stone-500 ml-1 uppercase tracking-wider">
                         Ke
                       </label>
-                      <div className="relative group">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-slate-400 group-focus-within:text-blue-600">
-                          🛬
-                        </span>
-                        <select
-                          value={destination}
-                          onChange={(e) => setDestination(e.target.value)}
-                          className="w-full bg-slate-50/80 border border-slate-200/80 rounded-2xl pl-12 pr-4 py-3 font-bold text-slate-700 outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer truncate"
-                        >
-                          <option value="">Kota Tujuan</option>
-                          {cities.map((c) => (
-                            <option key={c} value={c}>
-                              {c}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <select
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                        className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 font-bold text-stone-800 outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer text-sm"
+                      >
+                        <option value="">Kota Tujuan</option>
+                        {cities.map((c) => (
+                          <option key={c} value={c}>
+                            {c}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 ml-3 uppercase tracking-wider">
-                      Tanggal Pergi
+                    <label className="text-xs font-bold text-stone-500 ml-1 uppercase tracking-wider">
+                      Tanggal
                     </label>
                     <input
                       type="date"
                       value={departDate}
                       onChange={(e) => setDepartDate(e.target.value)}
-                      className="w-full bg-slate-50/80 border border-slate-200/80 rounded-2xl px-5 py-3 font-bold text-slate-700 outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+                      className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 font-bold text-stone-800 outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer text-sm"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 ml-3 uppercase tracking-wider">
+                      <label className="text-xs font-bold text-stone-500 ml-1 uppercase tracking-wider">
                         Penumpang
                       </label>
                       <select
                         value={passengers}
                         onChange={(e) => setPassengers(Number(e.target.value))}
-                        className="w-full bg-slate-50/80 border border-slate-200/80 rounded-2xl px-5 py-3 font-bold text-slate-700 outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+                        className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 font-bold text-stone-800 outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer text-sm"
                       >
                         {[1, 2, 3, 4, 5].map((n) => (
                           <option key={n} value={n}>
@@ -200,24 +180,25 @@ export default function Flights() {
                       </select>
                     </div>
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 ml-3 uppercase tracking-wider">
+                      <label className="text-xs font-bold text-stone-500 ml-1 uppercase tracking-wider">
                         Kelas
                       </label>
                       <select
                         value={seatClass}
                         onChange={(e) => setSeatClass(e.target.value)}
-                        className="w-full bg-slate-50/80 border border-slate-200/80 rounded-2xl px-5 py-3 font-bold text-slate-700 outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+                        className="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 font-bold text-stone-800 outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer text-sm"
                       >
                         <option value="Economy">Economy</option>
                         <option value="Business">Business</option>
                       </select>
                     </div>
                   </div>
+                  {/* Tombol Utama Orange */}
                   <button
                     onClick={handleSearch}
-                    className="w-full bg-linear-to-r from-blue-600 to-indigo-600 text-white font-bold text-lg py-4 rounded-2xl shadow-xl hover:scale-[1.02] transition-all active:scale-95 mt-6"
+                    className="w-full bg-orange-600 text-white font-bold text-sm uppercase tracking-wide py-4 rounded-xl shadow-lg hover:bg-orange-700 transition-all mt-6"
                   >
-                    🔍 Cari Penerbangan
+                    Cari Penerbangan
                   </button>
                 </div>
               </div>
@@ -228,135 +209,131 @@ export default function Flights() {
     );
   }
 
-  // --- HASIL PENCARIAN (DINAMIS / BISA SCROLL) ---
   return (
-    <div className="max-w-7xl mx-auto p-4 sm:p-6 pb-24 bg-slate-50 min-h-screen relative z-10">
+    <div className="max-w-7xl mx-auto p-4 sm:p-6 pb-24 bg-stone-50 min-h-screen relative z-10">
       {showToast && (
         <Toast
           message="Penerbangan berhasil dipesan!"
           onClose={() => setShowToast(false)}
         />
       )}
-      <div className="sticky top-20 z-30 bg-white/90 backdrop-blur-md border border-slate-200 shadow-sm rounded-2xl p-4 mb-6 flex items-center justify-between animate-in slide-in-from-top-5">
+
+      <div className="sticky top-20 z-30 bg-white/90 backdrop-blur-md border border-stone-200 shadow-sm rounded-xl p-4 mb-6 flex items-center justify-between animate-in slide-in-from-top-5">
         <div
           onClick={handleResetSearch}
           className="cursor-pointer group w-full"
         >
-          <div className="flex items-center gap-2 text-blue-600 mb-1 group-hover:translate-x-1 transition-transform">
-            <span className="text-xs font-bold">← Ganti Pencarian</span>
+          {/* Warna Hover Orange */}
+          <div className="flex items-center gap-2 text-orange-600 mb-1 group-hover:-translate-x-1 transition-transform">
+            <span className="text-xs font-bold uppercase tracking-wide">
+              Kembali
+            </span>
           </div>
           <div className="flex justify-between items-end">
             <div>
-              <div className="font-bold text-slate-800 text-sm sm:text-base">
-                {origin || "Semua Kota"}{" "}
-                <span className="text-slate-300">➝</span>{" "}
-                {destination || "Semua Kota"}
+              <div className="font-bold text-stone-800 text-sm sm:text-base">
+                {origin || "Semua"}{" "}
+                <span className="text-stone-400 mx-2">/</span>{" "}
+                {destination || "Semua"}
               </div>
-              <div className="text-xs text-slate-500 mt-0.5">
+              <div className="text-xs text-stone-500 mt-0.5 font-medium">
                 {new Date(departDate).toLocaleDateString("id-ID", {
                   day: "numeric",
                   month: "long",
                 })}{" "}
-                • {passengers} Pax
+                • {passengers} Orang
               </div>
             </div>
-            <div className="text-2xl opacity-10">✈️</div>
           </div>
         </div>
       </div>
 
       {loading && (
         <div className="text-center py-24">
-          <div className="animate-spin w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <h3 className="font-bold text-slate-800">Sedang mencari...</h3>
+          <div className="animate-spin w-8 h-8 border-2 border-stone-800 border-t-transparent rounded-full mx-auto mb-4"></div>
+          <h3 className="font-bold text-stone-800 text-sm uppercase tracking-wide">
+            Mencari...
+          </h3>
         </div>
       )}
+
       {!loading && filteredFlights.length === 0 && (
-        <div className="text-center py-20 bg-white rounded-3xl border border-slate-100 shadow-sm px-6">
-          <div className="text-6xl mb-4 opacity-80">📅</div>
-          <h3 className="text-xl font-bold text-slate-800">
-            Tidak ada penerbangan
-          </h3>
+        <div className="text-center py-20 border-2 border-dashed border-stone-200 rounded-xl">
+          <h3 className="text-lg font-bold text-stone-800">Tidak ada hasil</h3>
           <button
             onClick={handleResetSearch}
-            className="mt-6 px-6 py-2 bg-blue-50 text-blue-600 rounded-full font-bold text-sm hover:bg-blue-100 transition"
+            className="mt-4 text-xs font-bold text-orange-600 underline"
           >
-            Cari Lagi
+            Cari ulang
           </button>
         </div>
       )}
+
       {!loading && (
         <div className="space-y-4">
           {filteredFlights.map((flight) => (
             <div
               key={flight.id}
               onClick={() => setSelectedFlight(flight)}
-              className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 hover:border-blue-300 hover:shadow-md transition-all group cursor-pointer relative overflow-hidden"
+              className="bg-white rounded-2xl p-5 shadow-sm border border-stone-100 hover:border-orange-500 transition-all cursor-pointer relative overflow-hidden group"
             >
-              <div className="absolute top-0 right-0 w-20 h-full bg-linear-to-l from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="flex flex-col sm:flex-row gap-5 relative z-10">
+              <div className="flex flex-col sm:flex-row gap-6 relative z-10">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-5">
+                  <div className="flex items-center gap-4 mb-5">
                     <img
                       src={flight.image_url}
                       alt={flight.airline}
-                      className="w-12 h-12 object-contain rounded-xl bg-white border border-slate-100 p-1"
+                      className="w-10 h-10 object-contain rounded-md bg-white border border-stone-100 p-1"
                       onError={(e) =>
                         (e.currentTarget.src = "https://placehold.co/50")
                       }
                     />
                     <div>
-                      <h3 className="font-bold text-slate-800 text-lg">
+                      <h3 className="font-bold text-stone-900 text-base">
                         {flight.airline}
                       </h3>
-                      <span className="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md font-bold uppercase tracking-wide">
+                      <span className="text-[10px] bg-stone-100 text-stone-600 px-2 py-0.5 rounded-md font-bold uppercase tracking-wide">
                         {flight.duration} • Langsung
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-slate-800">
+                  <div className="flex items-center justify-between text-center">
+                    <div>
+                      <div className="text-lg font-bold text-stone-800">
                         {new Date(flight.departure_time).toLocaleTimeString(
                           "id-ID",
                           { hour: "2-digit", minute: "2-digit" }
                         )}
                       </div>
-                      <div className="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded mt-1">
+                      <div className="text-xs font-bold text-stone-400 mt-1">
                         {flight.departure_city.substring(0, 3).toUpperCase()}
                       </div>
                     </div>
-                    <div className="flex-1 mx-4 flex flex-col items-center justify-center relative -top-2">
-                      <div className="w-full h-0.5 bg-slate-200 relative">
-                        <div className="absolute right-0 -top-[5px] text-slate-300 text-xs">
-                          ➤
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-slate-800">
+                    <div className="flex-1 mx-6 h-px bg-stone-200"></div>
+                    <div>
+                      <div className="text-lg font-bold text-stone-800">
                         {new Date(flight.arrival_time).toLocaleTimeString(
                           "id-ID",
                           { hour: "2-digit", minute: "2-digit" }
                         )}
                       </div>
-                      <div className="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded mt-1">
+                      <div className="text-xs font-bold text-stone-400 mt-1">
                         {flight.arrival_city.substring(0, 3).toUpperCase()}
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center sm:border-l border-slate-100 sm:pl-6 pt-4 sm:pt-0 border-t sm:border-t-0 mt-2 sm:mt-0">
+                <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center sm:border-l border-stone-100 sm:pl-6 pt-4 sm:pt-0 border-t sm:border-t-0 mt-2 sm:mt-0">
                   <div className="text-right">
-                    <span className="text-xl font-bold text-orange-500 block">
+                    <span className="text-lg font-bold text-orange-600 block">
                       Rp {flight.price.toLocaleString("id-ID")}
                     </span>
-                    <span className="text-[10px] text-slate-400 font-medium">
-                      /pax
+                    <span className="text-[10px] text-stone-400 font-bold uppercase">
+                      Per Orang
                     </span>
                   </div>
-                  <button className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-bold text-sm mt-3 shadow-lg shadow-blue-200 group-hover:bg-blue-700 transition-all">
-                    Pilih
+                  <button className="bg-stone-900 text-white px-6 py-2 rounded-lg font-bold text-xs mt-3 hover:bg-orange-600 transition-colors">
+                    PILIH
                   </button>
                 </div>
               </div>
@@ -364,37 +341,42 @@ export default function Flights() {
           ))}
         </div>
       )}
+
       {selectedFlight && (
         <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
           <div
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
+            className="absolute inset-0 bg-stone-900/80 backdrop-blur-sm transition-opacity"
             onClick={() => setSelectedFlight(null)}
           ></div>
-          <div className="relative bg-slate-50 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-4xl shadow-2xl animate-in zoom-in-95 duration-200">
-            <div className="h-48 w-full relative">
-              <img src={FLIGHT_BG} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/40"></div>
+          <div className="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl animate-in zoom-in-95 duration-200">
+            <div className="h-40 w-full relative bg-stone-900">
+              <img
+                src={FLIGHT_BG}
+                className="w-full h-full object-cover opacity-50"
+              />
               <button
                 onClick={() => setSelectedFlight(null)}
-                className="absolute top-4 right-4 bg-black/20 text-white w-8 h-8 rounded-full backdrop-blur-md flex items-center justify-center hover:bg-black/40 transition"
+                className="absolute top-4 right-4 bg-white/20 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/30 transition font-bold"
               >
                 ✕
               </button>
-              <div className="absolute bottom-4 left-6 text-white">
+              <div className="absolute bottom-6 left-6 text-white">
                 <h2 className="text-2xl font-bold">{selectedFlight.airline}</h2>
-                <p className="text-sm opacity-90">Penerbangan Langsung</p>
+                <p className="text-xs font-bold uppercase tracking-widest opacity-80">
+                  Detail Penerbangan
+                </p>
               </div>
             </div>
             <div className="p-6 md:p-8">
-              <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm mb-6">
-                <div className="flex justify-between items-center mb-6">
+              <div className="bg-stone-50 rounded-2xl p-6 border border-stone-200 mb-6">
+                <div className="flex justify-between items-center mb-8">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-slate-800">
+                    <div className="text-4xl font-bold text-stone-900">
                       {selectedFlight.departure_city
                         .substring(0, 3)
                         .toUpperCase()}
                     </div>
-                    <div className="text-xs text-slate-500">
+                    <div className="text-xs font-bold text-stone-500 mt-1">
                       {new Date(
                         selectedFlight.departure_time
                       ).toLocaleTimeString([], {
@@ -403,23 +385,14 @@ export default function Flights() {
                       })}
                     </div>
                   </div>
-                  <div className="flex-1 flex flex-col items-center px-4">
-                    <span className="text-xs text-slate-400 mb-1">
-                      {selectedFlight.duration}
-                    </span>
-                    <div className="w-full h-px bg-slate-300 relative flex items-center justify-center">
-                      <span className="bg-white px-2 text-slate-400 text-xs">
-                        ✈
-                      </span>
-                    </div>
-                  </div>
+                  <div className="flex-1 h-px bg-stone-300 mx-4"></div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-slate-800">
+                    <div className="text-4xl font-bold text-stone-900">
                       {selectedFlight.arrival_city
                         .substring(0, 3)
                         .toUpperCase()}
                     </div>
-                    <div className="text-xs text-slate-500">
+                    <div className="text-xs font-bold text-stone-500 mt-1">
                       {new Date(selectedFlight.arrival_time).toLocaleTimeString(
                         [],
                         { hour: "2-digit", minute: "2-digit" }
@@ -427,21 +400,33 @@ export default function Flights() {
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 text-sm text-slate-600 bg-slate-50 p-4 rounded-2xl">
-                  <div className="flex items-center gap-2">
-                    📅 {new Date(departDate).toLocaleDateString("id-ID")}
+                <div className="space-y-2 text-sm text-stone-700 font-medium">
+                  <div className="flex justify-between border-b border-stone-200 pb-2">
+                    <span>Tanggal</span>
+                    <span>
+                      {new Date(departDate).toLocaleDateString("id-ID")}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    💺 {passengers} Penumpang
+                  <div className="flex justify-between border-b border-stone-200 pb-2">
+                    <span>Penumpang</span>
+                    <span>{passengers} Orang</span>
+                  </div>
+                  <div className="flex justify-between border-b border-stone-200 pb-2">
+                    <span>Kelas</span>
+                    <span>{seatClass}</span>
+                  </div>
+                  <div className="flex justify-between pt-2">
+                    <span>Durasi</span>
+                    <span>{selectedFlight.duration}</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center justify-between pt-2">
                 <div>
-                  <p className="text-xs text-slate-500 mb-1">
-                    Total Pembayaran
+                  <p className="text-xs text-stone-400 mb-1 font-bold uppercase">
+                    Total Bayar
                   </p>
-                  <p className="text-2xl font-bold text-blue-600">
+                  <p className="text-2xl font-bold text-orange-600">
                     Rp{" "}
                     {(selectedFlight.price * passengers).toLocaleString(
                       "id-ID"
@@ -450,7 +435,7 @@ export default function Flights() {
                 </div>
                 <button
                   onClick={handleBooking}
-                  className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-600 transition shadow-lg"
+                  className="bg-stone-900 text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-orange-600 transition shadow-lg uppercase tracking-wide"
                 >
                   Pesan Sekarang
                 </button>

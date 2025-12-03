@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  /* Menggunakan bg-stone-50 untuk nuansa hangat/krem */
+  @apply bg-stone-50 text-stone-900 antialiased;
 }
 
-/* Utility Class Custom (Tanpa @layer) */
+/* Utility Class Custom */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html,
+body {
+  overflow-x: hidden;
 }

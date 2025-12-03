@@ -2,8 +2,10 @@
 
 // 👇 Update baris ini (Ganti nama filenya)
 import flightBg from "../assets/images/airplane_flights.jpg";
+import rentalBg from "../assets/images/bg-car.png";
 
 export const FLIGHT_BG = flightBg;
+export const Rental_BG = rentalBg;
 
 // ... sisanya tetap sama ...
 export const AVATAR_DEFAULT =
