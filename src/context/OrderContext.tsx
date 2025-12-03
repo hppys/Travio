@@ -37,9 +37,8 @@ interface OrderContextType {
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
-  // --- 1. LOAD DATA DARI LOCAL STORAGE SAAT AWAL BUKA ---
+  // --- 1. LOAD DATA DARI LOCAL STORAGE ---
 
-  // Load Orders
   const [orders, setOrders] = useState<OrderItem[]>(() => {
     if (typeof window !== "undefined") {
       const savedOrders = localStorage.getItem("travio_orders");
@@ -48,38 +47,37 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     return [];
   });
 
-  // Load User Profile
   const [user, setUser] = useState<UserProfile>(() => {
     if (typeof window !== "undefined") {
-      const savedUser = localStorage.getItem("travio_user");
+      const savedUser = localStorage.getItem("travio_user_carlos");
       return savedUser
         ? JSON.parse(savedUser)
         : {
             name: "Carlos Sirait",
             email: "carlos@students.undip.ac.id",
-            avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Rizky",
+            avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Carlos",
             memberLevel: "Gold",
           };
     }
     return {
       name: "Carlos Sirait",
       email: "carlos@students.undip.ac.id",
-      avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Rizky",
+      avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Carlos",
       memberLevel: "Gold",
     };
   });
 
-  // --- 2. SIMPAN KE LOCAL STORAGE SETIAP ADA PERUBAHAN ---
+  // --- 2. SIMPAN PERUBAHAN ---
 
   useEffect(() => {
     localStorage.setItem("travio_orders", JSON.stringify(orders));
   }, [orders]);
 
   useEffect(() => {
-    localStorage.setItem("travio_user", JSON.stringify(user));
+    localStorage.setItem("travio_user_carlos", JSON.stringify(user));
   }, [user]);
 
-  // --- 3. FUNGSI-FUNGSI LOGIKA ---
+  // --- 3. LOGIKA BISNIS ---
 
   const addOrder = (item: Omit<OrderItem, "id" | "status">) => {
     const newOrder: OrderItem = {
@@ -101,6 +99,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
       ...prev,
       name,
       email,
+      // Update avatar otomatis sesuai nama baru
       avatar: `https://api.dicebear.com/9.x/avataaars/svg?seed=${name}`,
     }));
   };
