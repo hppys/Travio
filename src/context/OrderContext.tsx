@@ -55,15 +55,15 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
       return savedUser
         ? JSON.parse(savedUser)
         : {
-            name: "Rizky Traveler",
-            email: "rizky@example.com",
+            name: "Carlos Sirait",
+            email: "carlos@students.undip.ac.id",
             avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Rizky",
             memberLevel: "Gold",
           };
     }
     return {
-      name: "Rizky Traveler",
-      email: "rizky@example.com",
+      name: "Carlos Sirait",
+      email: "carlos@students.undip.ac.id",
       avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Rizky",
       memberLevel: "Gold",
     };

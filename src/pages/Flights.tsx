@@ -84,7 +84,7 @@ export default function Flights() {
   if (!hasSearched) {
     return (
       // Bg Stone-900 (Hitam kecoklatan hangat)
-      <div className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden bg-stone-900">
+      <div className="relative w-full h-dvh flex items-center justify-center overflow-hidden bg-stone-900">
         <div className="fixed inset-0 w-full h-full z-0">
           <img
             src={FLIGHT_BG}

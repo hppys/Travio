@@ -50,7 +50,7 @@ export default function Navbar() {
               <div className="w-px h-4 bg-stone-300"></div>
               <Link to="/profile" className="text-right group">
                 <p className="text-sm font-bold text-stone-900 group-hover:text-orange-600 transition-colors">
-                  Rizky Traveler
+                  Carlos Sirait
                 </p>
                 <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">
                   Gold Member
